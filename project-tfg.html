@@ -8,17 +8,162 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        .project-detail-section { padding-top: 120px; padding-bottom: 60px; max-width: 900px; margin: 0 auto; }
-        .project-detail-header { margin-bottom: 40px; }
-        .project-meta { display: flex; flex-wrap: wrap; gap: 24px; color: var(--text-secondary); margin-bottom: 24px; font-weight: 500; }
-        .project-meta span { display: flex; align-items: center; gap: 8px; }
-        .project-meta i { width: 18px; height: 18px; color: var(--primary-color); }
-        .project-detail-content { background: var(--surface-color); border: 1px solid var(--border-color); padding: 48px; border-radius: 16px; box-shadow: var(--shadow-sm); line-height: 1.8; color: var(--text-secondary); font-size: 1.05rem; }
-        .project-detail-content h3 { font-size: 1.5rem; margin-top: 32px; margin-bottom: 16px; color: var(--text-primary); font-family: 'Outfit', sans-serif; }
-        .project-detail-content h3:first-child { margin-top: 0; }
-        .download-btn-container { margin-top: 48px; text-align: center; }
-        .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--primary-color); font-weight: 600; margin-bottom: 24px; transition: transform 0.2s; }
+        .project-hero {
+            padding-top: 100px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(139,92,246,0.08) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .project-hero .container { max-width: 900px; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
         .back-link:hover { transform: translateX(-4px); }
+        .back-link i { width: 16px; height: 16px; }
+        .project-category-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--accent-light);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+        }
+        .project-hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 32px;
+        }
+        .meta-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .meta-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 18px;
+            box-shadow: var(--shadow-sm);
+        }
+        .meta-card-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .meta-card-icon i { width: 18px; height: 18px; color: var(--primary-color); }
+        .meta-card-text { display: flex; flex-direction: column; }
+        .meta-card-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); }
+        .meta-card-value { font-size: 0.92rem; font-weight: 600; color: var(--text-primary); }
+
+        .project-body { padding: 60px 0 80px; }
+        .project-body .container { max-width: 900px; }
+        .content-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 1.02rem;
+        }
+        .content-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .content-card h3 i { width: 22px; height: 22px; color: var(--primary-color); flex-shrink: 0; }
+        .content-card p { margin-bottom: 16px; }
+        .content-card p:last-child { margin-bottom: 0; }
+        .content-card ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .content-card ul li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .content-card ul li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            margin-top: 10px;
+            flex-shrink: 0;
+        }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+        .tech-tag {
+            padding: 6px 14px;
+            background: var(--accent-light);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+        .download-card {
+            background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(139,92,246,0.06));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .download-card-text h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+        .download-card-text p { color: var(--text-secondary); font-size: 0.92rem; }
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary-color);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .btn-download:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        .btn-download i { width: 18px; height: 18px; }
     </style>
 </head>
 <body>
@@ -26,7 +171,7 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo"><span class="logo-dot"></span>ASF</a>
             <nav class="nav-links">
-                <a href="index.html#experience" class="nav-link">Volver a Experiencia</a>
+                <a href="index.html#experience" class="nav-link">← Volver</a>
             </nav>
             <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambiar tema">
                 <i data-lucide="sun" class="sun-icon"></i>
@@ -36,42 +181,98 @@
     </header>
 
     <main>
-        <section class="project-detail-section container">
-            <a href="index.html#experience" class="back-link"><i data-lucide="arrow-left"></i> Volver al Portafolio</a>
-            
-            <div class="project-detail-header">
-                <span class="section-subtitle">Trabajo de Fin de Grado (TFG)</span>
-                <h1 class="section-title" style="font-size: 2.5rem; margin-bottom: 16px;">Sistema de Simulación Física para Niños Invidentes</h1>
-                
-                <div class="project-meta">
-                    <span><i data-lucide="calendar"></i> Junio 2026</span>
-                    <span><i data-lucide="building"></i> Universidad Carlos III de Madrid (UC3M)</span>
-                    <span><i data-lucide="users"></i> En colaboración con la ONCE</span>
+        <!-- Hero -->
+        <section class="project-hero">
+            <div class="container">
+                <a href="index.html#experience" class="back-link">
+                    <i data-lucide="arrow-left"></i> Volver al Portafolio
+                </a>
+                <div class="project-category-badge">Trabajo de Fin de Grado</div>
+                <h1 class="project-hero-title">Sistema de Simulación Física<br>para Niños Invidentes</h1>
+                <div class="meta-cards">
+                    <div class="meta-card">
+                        <div class="meta-card-icon"><i data-lucide="calendar"></i></div>
+                        <div class="meta-card-text">
+                            <span class="meta-card-label">Fecha</span>
+                            <span class="meta-card-value">Junio 2026</span>
+                        </div>
+                    </div>
+                    <div class="meta-card">
+                        <div class="meta-card-icon"><i data-lucide="building"></i></div>
+                        <div class="meta-card-text">
+                            <span class="meta-card-label">Institución</span>
+                            <span class="meta-card-value">UC3M — Universidad Carlos III de Madrid</span>
+                        </div>
+                    </div>
+                    <div class="meta-card">
+                        <div class="meta-card-icon"><i data-lucide="users"></i></div>
+                        <div class="meta-card-text">
+                            <span class="meta-card-label">Colaboración</span>
+                            <span class="meta-card-value">ONCE</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="project-detail-content">
-                <h3>Resumen del Proyecto</h3>
-                <p>Este proyecto consiste en el desarrollo completo de un dispositivo educativo interactivo, tanto físico como digital, diseñado específicamente para replicar experimentos de física de nivel secundaria. El objetivo principal es ofrecer una herramienta accesible que permita a alumnos con discapacidad visual grave o ceguera comprender conceptos como las leyes de Newton, la conservación de la energía y la cinemática a través de la retroalimentación háptica y auditiva.</p>
-                
-                <h3>Detalles Técnicos</h3>
-                <p>El desarrollo del proyecto es multidisciplinar e involucra varias ramas de la ingeniería electrónica e industrial:</p>
-                <ul>
-                    <li style="margin-bottom: 8px; list-style: disc; margin-left: 20px;"><strong>Software y Control:</strong> Programación de la lógica de control utilizando el entorno Arduino IDE (lenguaje C/C++) para gestionar las entradas de sensores y las salidas de retroalimentación.</li>
-                    <li style="margin-bottom: 8px; list-style: disc; margin-left: 20px;"><strong>Hardware y Electrónica:</strong> Diseño e implementación de la placa de circuito impreso (PCB) desde cero, incluyendo la selección y acondicionamiento de los componentes electrónicos necesarios.</li>
-                    <li style="margin-bottom: 8px; list-style: disc; margin-left: 20px;"><strong>Diseño Mecánico:</strong> Modelado 3D de las carcasas y mecanismos físicos, preparados para su fabricación mediante impresión 3D, garantizando ergonomía y robustez para su uso en aulas.</li>
-                </ul>
+        <!-- Body -->
+        <section class="project-body">
+            <div class="container">
 
-                <div class="download-btn-container">
-                    <a href="docs/tfg.pdf" target="_blank" class="btn btn-primary" download>
-                        <i data-lucide="download"></i> Descargar Documento (PDF)
+                <!-- Resumen -->
+                <div class="content-card">
+                    <h3><i data-lucide="file-text"></i> Resumen del Proyecto</h3>
+                    <p>El TFG consiste en el desarrollo completo de un dispositivo educativo interactivo, tanto físico como digital, diseñado específicamente para replicar experimentos de física de nivel secundaria. El objetivo es ofrecer una herramienta accesible que permita a alumnos con discapacidad visual grave o ceguera comprender conceptos como las leyes de Newton, la conservación de la energía y la cinemática a través de retroalimentación háptica y auditiva.</p>
+                    <p>El proyecto surge de la colaboración con la ONCE y busca cubrir una brecha en el acceso a la educación científica práctica para personas con discapacidad visual, aportando una solución hardware y software completamente desarrollada desde cero.</p>
+                </div>
+
+                <!-- Detalles técnicos -->
+                <div class="content-card">
+                    <h3><i data-lucide="cpu"></i> Detalles Técnicos</h3>
+                    <p>El desarrollo del proyecto es multidisciplinar e involucra varias ramas de la ingeniería electrónica e industrial:</p>
+                    <ul>
+                        <li><div><strong>Software y Control:</strong> Programación de la lógica de control utilizando el entorno Arduino IDE (lenguaje C/C++) para gestionar las entradas de sensores y las salidas de retroalimentación háptica y auditiva.</div></li>
+                        <li><div><strong>Hardware y Electrónica:</strong> Diseño e implementación de la placa de circuito impreso (PCB) desde cero con KiCad, incluyendo la selección y acondicionamiento de todos los componentes electrónicos necesarios.</div></li>
+                        <li><div><strong>Diseño Mecánico:</strong> Modelado 3D de las carcasas y mecanismos físicos, preparados para su fabricación mediante impresión 3D, garantizando ergonomía y robustez para su uso en aulas con alumnos.</div></li>
+                        <li><div><strong>Accesibilidad:</strong> Integración de síntesis de voz, motores de vibración y pulsadores de gran tamaño para garantizar la usabilidad autónoma por parte de los alumnos invidentes.</div></li>
+                    </ul>
+                </div>
+
+                <!-- Tecnologías -->
+                <div class="content-card">
+                    <h3><i data-lucide="layers"></i> Tecnologías y Herramientas</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Arduino (C/C++)</span>
+                        <span class="tech-tag">KiCad — Diseño PCB</span>
+                        <span class="tech-tag">Modelado 3D</span>
+                        <span class="tech-tag">Impresión 3D</span>
+                        <span class="tech-tag">Electrónica de Acondicionamiento</span>
+                        <span class="tech-tag">Síntesis de Voz</span>
+                        <span class="tech-tag">Actuadores Hápticos</span>
+                    </div>
+                </div>
+
+                <!-- Descarga -->
+                <div class="download-card">
+                    <div class="download-card-text">
+                        <h3>Memoria completa del TFG</h3>
+                        <p>Tecnología con Sentido — Trabajo de Fin de Grado, UC3M (Junio 2026)</p>
+                    </div>
+                    <a href="docs/tfg.pdf" target="_blank" class="btn-download" download>
+                        <i data-lucide="download"></i> Descargar PDF
                     </a>
                 </div>
+
             </div>
         </section>
     </main>
 
-    <!-- JS File -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; 2026 Alejandro Serrano Flores. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>

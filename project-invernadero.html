@@ -3,22 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automatización de Invernadero | Alejandro Serrano Flores</title>
+    <title>Invernadero Inteligente Automatizado | Alejandro Serrano Flores</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        .project-detail-section { padding-top: 120px; padding-bottom: 60px; max-width: 900px; margin: 0 auto; }
-        .project-detail-header { margin-bottom: 40px; }
-        .project-meta { display: flex; flex-wrap: wrap; gap: 24px; color: var(--text-secondary); margin-bottom: 24px; font-weight: 500; }
-        .project-meta span { display: flex; align-items: center; gap: 8px; }
-        .project-meta i { width: 18px; height: 18px; color: var(--primary-color); }
-        .project-detail-content { background: var(--surface-color); border: 1px solid var(--border-color); padding: 48px; border-radius: 16px; box-shadow: var(--shadow-sm); line-height: 1.8; color: var(--text-secondary); font-size: 1.05rem; }
-        .project-detail-content h3 { font-size: 1.5rem; margin-top: 32px; margin-bottom: 16px; color: var(--text-primary); font-family: 'Outfit', sans-serif; }
-        .project-detail-content h3:first-child { margin-top: 0; }
-        .download-btn-container { margin-top: 48px; text-align: center; }
-        .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--primary-color); font-weight: 600; margin-bottom: 24px; transition: transform 0.2s; }
+        .project-hero {
+            padding-top: 100px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(139,92,246,0.08) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .project-hero .container { max-width: 900px; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
         .back-link:hover { transform: translateX(-4px); }
+        .back-link i { width: 16px; height: 16px; }
+        .project-category-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--accent-light);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+        }
+        .project-hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 32px;
+        }
+        .meta-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .meta-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 18px;
+            box-shadow: var(--shadow-sm);
+        }
+        .meta-card-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .meta-card-icon i { width: 18px; height: 18px; color: var(--primary-color); }
+        .meta-card-text { display: flex; flex-direction: column; }
+        .meta-card-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); }
+        .meta-card-value { font-size: 0.92rem; font-weight: 600; color: var(--text-primary); }
+
+        .project-body { padding: 60px 0 80px; }
+        .project-body .container { max-width: 900px; }
+        .content-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 1.02rem;
+        }
+        .content-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .content-card h3 i { width: 22px; height: 22px; color: var(--primary-color); flex-shrink: 0; }
+        .content-card p { margin-bottom: 16px; }
+        .content-card p:last-child { margin-bottom: 0; }
+        .content-card ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .content-card ul li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .content-card ul li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            margin-top: 10px;
+            flex-shrink: 0;
+        }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+        .tech-tag {
+            padding: 6px 14px;
+            background: var(--accent-light);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+        .download-card {
+            background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(139,92,246,0.06));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .download-card-text h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+        .download-card-text p { color: var(--text-secondary); font-size: 0.92rem; }
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary-color);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .btn-download:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        .btn-download i { width: 18px; height: 18px; }
     </style>
 </head>
 <body>
@@ -26,7 +171,7 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo"><span class="logo-dot"></span>ASF</a>
             <nav class="nav-links">
-                <a href="index.html#experience" class="nav-link">Volver a Experiencia</a>
+                <a href="index.html#experience" class="nav-link">← Volver</a>
             </nav>
             <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambiar tema">
                 <i data-lucide="sun" class="sun-icon"></i>
@@ -36,43 +181,98 @@
     </header>
 
     <main>
-        <section class="project-detail-section container">
-            <a href="index.html#experience" class="back-link"><i data-lucide="arrow-left"></i> Volver al Portafolio</a>
-            
-            <div class="project-detail-header">
-                <span class="section-subtitle">Proyecto Técnico Industrial</span>
-                <h1 class="section-title" style="font-size: 2.5rem; margin-bottom: 16px;">Automatización Sostenible de un Invernadero</h1>
-                
-                <div class="project-meta">
-                    <span><i data-lucide="calendar"></i> Abril 2026</span>
-                    <span><i data-lucide="building"></i> Universidad Carlos III de Madrid (UC3M)</span>
-                    <span><i data-lucide="leaf"></i> Agricultura Inteligente</span>
+        <!-- Hero -->
+        <section class="project-hero">
+            <div class="container">
+                <a href="index.html#experience" class="back-link">
+                    <i data-lucide="arrow-left"></i> Volver al Portafolio
+                </a>
+                <div class="project-category-badge">Proyecto Técnico Industrial</div>
+                <h1 class="project-hero-title">Invernadero Inteligente<br>Automatizado</h1>
+                <div class="meta-cards">
+                    <div class="meta-card">
+                        <div class="meta-card-icon"><i data-lucide="calendar"></i></div>
+                        <div class="meta-card-text">
+                            <span class="meta-card-label">Fecha</span>
+                            <span class="meta-card-value">Abril 2026</span>
+                        </div>
+                    </div>
+                    <div class="meta-card">
+                        <div class="meta-card-icon"><i data-lucide="building"></i></div>
+                        <div class="meta-card-text">
+                            <span class="meta-card-label">Institución</span>
+                            <span class="meta-card-value">UC3M — Universidad Carlos III de Madrid</span>
+                        </div>
+                    </div>
+                    <div class="meta-card">
+                        <div class="meta-card-icon"><i data-lucide="leaf"></i></div>
+                        <div class="meta-card-text">
+                            <span class="meta-card-label">Área</span>
+                            <span class="meta-card-value">Automatización Industrial</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="project-detail-content">
-                <h3>Resumen del Proyecto</h3>
-                <p>Este proyecto se centra en el diseño e implementación de un sistema de control climático y riego automatizado para un invernadero de alta tecnología. El objetivo principal es garantizar la sostenibilidad y eficiencia en el cultivo, optimizando el uso de recursos hídricos y energéticos mediante la monitorización en tiempo real de las condiciones ambientales.</p>
-                
-                <h3>Detalles Técnicos</h3>
-                <p>El sistema se ha diseñado bajo una arquitectura jerárquica industrial robusta e incluye los siguientes componentes clave:</p>
-                <ul>
-                    <li style="margin-bottom: 8px; list-style: disc; margin-left: 20px;"><strong>Controlador Lógico Programable (PLC):</strong> Uso de Siemens SIMATIC S7-1200 para la adquisición de datos de sensores y control de actuadores, programado bajo normativas industriales.</li>
-                    <li style="margin-bottom: 8px; list-style: disc; margin-left: 20px;"><strong>Interfaces HMI y SCADA:</strong> Desarrollo de un sistema de supervisión y control de datos que permite a los operadores visualizar variables como temperatura, humedad (aire y suelo), niveles de CO₂ y radiación solar.</li>
-                    <li style="margin-bottom: 8px; list-style: disc; margin-left: 20px;"><strong>Instrumentación Industrial:</strong> Selección, dimensionamiento y acondicionamiento eléctrico de sensores meteorológicos, válvulas proporcionales y variadores de frecuencia, comunicados vía PROFINET y lazos de corriente 4-20mA.</li>
-                    <li style="margin-bottom: 8px; list-style: disc; margin-left: 20px;"><strong>Seguridad y Normativa:</strong> Cumplimiento de la normativa nacional y europea para cuadros eléctricos e instalaciones, integrando elementos críticos de protección y sistemas SAI para evitar la pérdida de datos.</li>
-                </ul>
+        <!-- Body -->
+        <section class="project-body">
+            <div class="container">
 
-                <div class="download-btn-container">
-                    <a href="docs/invernadero.pdf" target="_blank" class="btn btn-primary" download>
-                        <i data-lucide="download"></i> Descargar Documento (PDF)
+                <!-- Resumen -->
+                <div class="content-card">
+                    <h3><i data-lucide="file-text"></i> Resumen del Proyecto</h3>
+                    <p>Este proyecto, encuadrado en la asignatura de Oficina Técnica, se centra en el diseño e implementación de un sistema de control climático y riego automatizado para un invernadero de alta tecnología. El objetivo principal es garantizar la sostenibilidad y eficiencia en el cultivo, optimizando el uso de recursos hídricos y energéticos mediante la monitorización en tiempo real de las condiciones ambientales.</p>
+                    <p>El resultado final es un proyecto técnico industrial completo conforme a la normativa nacional y europea, que abarca desde la especificación de instrumentación hasta el diseño de cuadros eléctricos y la arquitectura de control.</p>
+                </div>
+
+                <!-- Detalles técnicos -->
+                <div class="content-card">
+                    <h3><i data-lucide="cpu"></i> Detalles Técnicos</h3>
+                    <p>El sistema se ha diseñado bajo una arquitectura jerárquica industrial robusta e incluye los siguientes componentes clave:</p>
+                    <ul>
+                        <li><div><strong>Controlador Lógico Programable (PLC):</strong> Uso de Siemens SIMATIC S7-1200 para la adquisición de datos de sensores y control de actuadores, programado bajo normativas industriales IEC 61131-3.</div></li>
+                        <li><div><strong>Interfaces HMI y SCADA:</strong> Desarrollo de un sistema de supervisión y control de datos que permite a los operadores visualizar variables como temperatura, humedad (aire y suelo), niveles de CO₂ y radiación solar.</div></li>
+                        <li><div><strong>Instrumentación Industrial:</strong> Selección, dimensionamiento y acondicionamiento eléctrico de sensores meteorológicos, válvulas proporcionales y variadores de frecuencia, comunicados vía PROFINET y lazos de corriente 4-20 mA.</div></li>
+                        <li><div><strong>Seguridad y Normativa:</strong> Cumplimiento de la normativa nacional y europea para cuadros eléctricos e instalaciones, integrando elementos críticos de protección y sistemas SAI para evitar la pérdida de datos en caso de fallo eléctrico.</div></li>
+                    </ul>
+                </div>
+
+                <!-- Tecnologías -->
+                <div class="content-card">
+                    <h3><i data-lucide="layers"></i> Tecnologías y Herramientas</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">PLC Siemens S7-1200</span>
+                        <span class="tech-tag">SCADA / HMI</span>
+                        <span class="tech-tag">PROFINET</span>
+                        <span class="tech-tag">Lazos 4-20 mA</span>
+                        <span class="tech-tag">Instrumentación Industrial</span>
+                        <span class="tech-tag">Normativa IEC / UE</span>
+                        <span class="tech-tag">Cuadros Eléctricos</span>
+                    </div>
+                </div>
+
+                <!-- Descarga -->
+                <div class="download-card">
+                    <div class="download-card-text">
+                        <h3>Documento técnico completo</h3>
+                        <p>Memoria del proyecto de automatización del invernadero — Oficina Técnica, UC3M (Abril 2026)</p>
+                    </div>
+                    <a href="docs/invernadero.pdf" target="_blank" class="btn-download" download>
+                        <i data-lucide="download"></i> Descargar PDF
                     </a>
                 </div>
+
             </div>
         </section>
     </main>
 
-    <!-- JS File -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; 2026 Alejandro Serrano Flores. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
